@@ -6,7 +6,7 @@
 /*   By: mde-la-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:11:06 by mde-la-s          #+#    #+#             */
-/*   Updated: 2021/09/13 16:31:14 by mde-la-s         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:04:05 by mde-la-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_data {
 
 t_data	my_mlx_pixel_put(t_data img, int x, int y, int color);
 int		handle_input(int keysym, t_data *img);
-int		handle_no_event(void *data);
+int		handle_no_event();
 t_data	create_img(t_data img);
 t_data	draw_img(int x, int y, t_data img);
 

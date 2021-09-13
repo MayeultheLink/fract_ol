@@ -6,7 +6,7 @@
 /*   By: mde-la-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:28:30 by mde-la-s          #+#    #+#             */
-/*   Updated: 2021/09/13 16:30:57 by mde-la-s         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:04:14 by mde-la-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_input(int keysym, t_data *img)
 	return (0);
 }
 
-int	handle_no_event(void *data)
+int	handle_no_event()
 {
 	return (0);
 }
