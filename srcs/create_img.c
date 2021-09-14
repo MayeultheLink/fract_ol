@@ -12,58 +12,72 @@
 
 #include "fractol.h"
 
-t_data	create_img(t_data img)
+void	create_img(t_data *img)
 {
 	int		y;
 	int		x;
 
 	y = 0;
-	while (y < img.height)
+	x = 0;
+	while (y < img->height)
 	{
-		while (x < img.width)
+		while (x < img->width)
 		{
-			img = draw_img(x, y, img);
+			draw_img(x, y, img);
 			x++;
 		}
 		y++;
 		x = 0;
 	}
-	return (img);
+	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
-t_data	draw_img(int x, int y, t_data img)
+void	draw_img(int x, int y, t_data *img)
 {
-	double cRe, cIm;
-	double newRe, newIm, oldRe, oldIm;
-	cRe = -0.8;
-	cIm = 0.156;
-	int	max = 300;
-	int i;
-	int color = 0;
+	int color;
+	int	i;
 
-	newRe = 1.5 * (x - img.width / 2) / (0.5 * img.width);
-	newIm = (y - img.height / 2) / (0.5 * img.height);
+	img->newRe = 1.5 * (x - img->refx) / (0.5 * img->width) * img->zoom;
+	img->newIm = (y - img->refy) / (0.5 * img->height) * img->zoom;
+	i = nmb_iter(img);
+	color = color_gen(i, img->max);
+	if (i < img->max)
+		my_mlx_pixel_put(img, x, y, color);
+	else
+		my_mlx_pixel_put(img, x, y, 0x000000);
+}
+
+int	nmb_iter(t_data *img)
+{
+	int	i;
+
 	i = 0;
-	while (i < max)
+	while (i < img->max)
 	{
-		oldRe = newRe;
-		oldIm = newIm;
-
-		newRe = oldRe * oldRe - oldIm * oldIm + cRe;
-		newIm = 2 * oldRe * oldIm + cIm;
-
-		if ((newRe * newRe + newIm * newIm) > 4)
+		img->oldRe = img->newRe;
+		img->oldIm = img->newIm;
+		img->newRe = img->oldRe * img->oldRe - img->oldIm * img->oldIm + img->reel;
+		img->newIm = 2 * img->oldRe * img->oldIm + img->imag;
+		if ((img->newRe * img->newRe + img->newIm * img->newIm) > 4)
 			break ;
 		i++;
 	}
-	color = 0;
+	return (i);
+}
+
+int	color_gen(int i, int max)
+{
+	int	color;
+
 	if (i < (max / 3))
+	{
 		color = 16777215 - (65536 * (i * 100 / (max / 3)));
+		if (color < 10223615)
+			color = 10223615 - (65793 * ((i - (max / 3)) * 100 / (max / 3)));
+	}
 	else if (i < ((max / 3) * 2))
 		color = 12493687 - (65793 * ((i - (max / 3)) * 100 / (max / 3)));
 	if (i < max && i > ((max / 3) * 2))
 		color = 14408667 - (65793 * ((i - (max / 3)) * 100 / (max / 3)));
-	if (i < max)
-		img = my_mlx_pixel_put(img, x, y, color);
-	return (img);
+	return (color);
 }

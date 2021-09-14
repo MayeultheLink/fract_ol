@@ -27,12 +27,26 @@ typedef struct	s_data {
 	void	*win;
 	int		height;
 	int		width;
+	int		max;
+	int		refx;
+	int		refy;
+	double	zoom;
+	double	reel;
+	double	imag;
+	double	newRe;
+	double	newIm;
+	double	oldRe;
+	double	oldIm;
 }				t_data;
 
-t_data	my_mlx_pixel_put(t_data img, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
 int		handle_input(int keysym, t_data *img);
 int		handle_no_event();
-t_data	create_img(t_data img);
-t_data	draw_img(int x, int y, t_data img);
+void	create_img(t_data *img);
+void	draw_img(int x, int y, t_data *img);
+int		nmb_iter(t_data *img);
+int		color_gen(int i, int max);
+void	move_win(t_data *img, int keysym);
+void	zoom(t_data *img, int keysym);
 
 #endif

@@ -19,17 +19,22 @@ int	main()
 
 	img.width = 1920;
 	img.height = 1080;
+	img.max = 300;
+	img.reel = -0.8;
+	img.imag = 0.156;
+	img.refx = img.width / 2;
+	img.refy = img.height / 2;
+	img.zoom = 1;
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "new");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-				&img.endian);
-	img = create_img(img);
-	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+				&img.line_length, &img.endian);
+	create_img(&img);
 	mlx_loop_hook(img.mlx, &handle_no_event, &img);
 	mlx_key_hook(img.win, &handle_input, &img);
 	mlx_loop(img.mlx);
-//	mlx_destroy_display(img.mlx);
-//	free(img.mlx);
+	mlx_destroy_display(img.mlx);
+	free(img.mlx);
 	return (0);
 }

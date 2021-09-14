@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-la-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 14:28:30 by mde-la-s          #+#    #+#             */
+/*   Created: 2021/09/14 16:00:00 by mde-la-s          #+#    #+#             */
 /*   Updated: 2021/09/13 17:04:14 by mde-la-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
+void	move_win(t_data *img, int keysym)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	if (keysym == 0xff54)
+		img->refy -= 50;
+	if (keysym == 0xff52)
+		img->refy += 50;
+	if (keysym == 0xff51)
+		img->refx += 50;
+	if (keysym == 0xff53)
+		img->refx -= 50;
+	create_img(img);
 }
 
-int	handle_input(int keysym, t_data *img)
+void	zoom(t_data *img, int keysym)
 {
-	if (keysym == 0xff1b)
-		mlx_destroy_window(img->mlx, img->win);
-	if (keysym == 0xff54 || keysym == 0xff52 || keysym == 0xff51 
-		|| keysym == 0xff53)
-		move_win(img, keysym);
-	if (keysym == 0x6f || keysym == 0x70)
-		zoom(img, keysym);
-	return (0);
-}
-
-int	handle_no_event()
-{
-	return (0);
+	if (keysym == 0x6f)
+	{
+		img->zoom *= 2;
+		create_img(img);
+	}
+	if (keysym == 0x70)
+	{
+		img->zoom /= 2;
+		create_img(img);
+	}
 }

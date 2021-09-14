@@ -17,7 +17,8 @@ LIBFT	=	libft/libft.a
 MLX		=	minilibx/libmlx.a
 SRCS	=	fractol.c \
 			srcs/utils.c \
-			srcs/launch_win.c
+			srcs/create_img.c \
+			srcs/events.c
 
 # Colors
 _GREY=$ \x1b[30m
@@ -31,8 +32,8 @@ _WHITE=$ \x1b[37m
 _END=$ \x1b[0m
 
 CC		=	clang
-CFLAGS	=	-Werror -Wextra -Wall -I./headers -I./minilibx 
-CFLAGS2 =	-framework OpenGL -framework AppKit
+CFLAGS	=	-Werror -Wextra -Wall -I./headers -I./minilibx
+CFLAGS2 =	-L minilibx -lmlx -lXext -lX11 -lm
 
 OBJS	=	${SRCS:.c=.o}
 
