@@ -76,7 +76,7 @@ bonus:	${OBJSBONUS}
 		ar rcs ${NAME} ${OBJSBONUS}
 
 clean	:
-	rm -f ${OBJS} ${OBJSBONUS}
+	rm -f ${OBJS} ${OBJSBONUS} libft.a
 
 fclean	: clean
 	rm -f ${NAME}

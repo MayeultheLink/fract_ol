@@ -6,15 +6,15 @@
 /*   By: mde-la-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:41:16 by mde-la-s          #+#    #+#             */
-/*   Updated: 2020/09/30 15:11:40 by mde-la-s         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:09:27 by mde-la-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		base_len(char *base)
+int	base_len(char *base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (base[i])
@@ -22,7 +22,7 @@ int		base_len(char *base)
 	return (i);
 }
 
-int		ft_is_neg(int nbr)
+int	ft_is_neg(int nbr)
 {
 	if (nbr < 0)
 		return (-1);
@@ -55,7 +55,7 @@ char	*ft_strrev(char *str, int neg)
 
 char	*ft_putnbr(long nbrl, char *cpy, int size_base, char *base_to)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_is_neg(nbrl) == -1)
@@ -85,7 +85,8 @@ char	*ft_convert_base2(int nbr, char *base_to)
 	i = 0;
 	neg = nbr;
 	nbrl = nbr;
-	if (!(cpy = (char *)malloc(sizeof(char) * 34)))
+	cpy = (char *)malloc(sizeof(char) * 34);
+	if (!cpy)
 		return (0);
 	ft_putnbr(nbrl, cpy, size_base, base_to);
 	ft_strrev(cpy, neg);

@@ -6,7 +6,7 @@
 /*   By: mde-la-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:02:18 by mde-la-s          #+#    #+#             */
-/*   Updated: 2020/09/30 19:47:54 by mde-la-s         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:08:51 by mde-la-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_convert_base2(int nbr, char *base_to);
 char	*ft_strrev(char *str, int neg);
 int		base_len(char *base);
 
-int		check_base(char *base)
+int	check_base(char *base)
 {
 	int	size_base;
 	int	i;
@@ -26,7 +26,7 @@ int		check_base(char *base)
 	i = 0;
 	j = 0;
 	while (base[size_base] && base[size_base] != '+' && base[size_base] != '-'
-			&& base[size_base] >= 32 && base[size_base] < 127)
+		&& base[size_base] >= 32 && base[size_base] < 127)
 		size_base++;
 	if (base[size_base] != 0)
 		return (0);
@@ -43,9 +43,9 @@ int		check_base(char *base)
 	return (size_base);
 }
 
-int		ft_is_in_base(char nbr, char *base)
+int	ft_is_in_base(char nbr, char *base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (nbr != base[i] && base[i])
@@ -55,9 +55,9 @@ int		ft_is_in_base(char nbr, char *base)
 	return (0);
 }
 
-int		ft_pos_base(char nbr, char *base)
+int	ft_pos_base(char nbr, char *base)
 {
-	int pos;
+	int	pos;
 
 	pos = 0;
 	while (nbr != base[pos] && base[pos])
@@ -65,12 +65,12 @@ int		ft_pos_base(char nbr, char *base)
 	return (pos);
 }
 
-int		ft_atoi_base(char *nbr, char *base)
+int	ft_atoi_base(char *nbr, char *base)
 {
-	int res;
-	int size_base;
-	int neg;
-	int i;
+	int	res;
+	int	size_base;
+	int	neg;
+	int	i;
 
 	res = 0;
 	size_base = check_base(base);
@@ -81,7 +81,7 @@ int		ft_atoi_base(char *nbr, char *base)
 	if (size_base == 0)
 		return (0);
 	while (nbr[i] == ' ' || nbr[i] == '\f' || nbr[i] == '\n' || nbr[i] == '\r'
-			|| nbr[i] == '\t' || nbr[i] == '\v')
+		|| nbr[i] == '\t' || nbr[i] == '\v')
 		i++;
 	while (nbr[i] == '-' || nbr[i] == '+')
 	{
@@ -106,7 +106,8 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		neg *= -1;
 	if (check_base(base_from) == 0 || check_base(base_to) == 0)
 		return (0);
-	if (!(cpy = (char *)malloc(sizeof(char) * 34)))
+	cpy = (char *)malloc(sizeof(char) * 34);
+	if (!cpy)
 		return (0);
 	if (ft_atoi_base(nbr, base_from) == 0)
 	{

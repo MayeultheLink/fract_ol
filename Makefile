@@ -6,18 +6,23 @@
 #    By: mde-la-s <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/07 16:17:45 by mde-la-s          #+#    #+#              #
-#    Updated: 2021/09/13 17:03:37 by mde-la-s         ###   ########.fr        #
+#    Updated: 2021/09/25 16:14:01 by mde-la-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	fractol
-NAMEBON	=	bonus
 
 LIBFT	=	libft/libft.a
-MLX		=	minilibx/libmlx.a
+MLX		=	minilibx-linux/libmlx.a
 SRCS	=	fractol.c \
 			srcs/utils.c \
-			srcs/create_img.c \
+			srcs/utils2.c \
+			srcs/create_img_julia.c \
+			srcs/create_img_mandelbrot.c \
+			srcs/create_img_sponge.c \
+			srcs/create_img_burning_ship.c \
+			srcs/colors.c \
+			srcs/prints.c \
 			srcs/events.c
 
 # Colors
@@ -32,15 +37,15 @@ _WHITE=$ \x1b[37m
 _END=$ \x1b[0m
 
 CC		=	clang
-CFLAGS	=	-Werror -Wextra -Wall -I./headers -I./minilibx
-CFLAGS2 =	-L minilibx -lmlx -lXext -lX11 -lm
+CFLAGS	=	-Werror -Wextra -Wall -I./headers -I./minilibx-linux
+CFLAGS2 =	-L minilibx-linux -lmlx -lXext -lX11 -lm
 
 OBJS	=	${SRCS:.c=.o}
 
 all		:	${NAME}
 
 $(NAME)	:	${OBJS}
-		${MAKE} -C ./minilibx
+		${MAKE} -C ./minilibx-linux
 		@echo "$(_GREEN)MINILIBX OK${_END}"
 		${MAKE} -C ./libft
 		${MAKE} bonus -C ./libft
@@ -48,18 +53,13 @@ $(NAME)	:	${OBJS}
 		${CC} ${CFLAGS} ${CFLAGS2} -o $(NAME) ${OBJS} ${LIBFT} ${MLX}
 		@echo "$(_GREEN)FRACTOL OK${_END}"
 
-$(NAMEBON)	:	${OBJSBON}
-		${MAKE} -C ./libft
-		${MAKE} bonus -C ./libft
-		${CC} ${CFLAGS} -o $(NAMEBON) ${OBJSBON} ${LIBFT}
-		@echo "$(_GREEN)BONUS OK${_END}"
-
 clean	:
 		${MAKE} clean -C libft
-		rm -f ${OBJS} ${OBJSBON}
+		${MAKE} clean -C minilibx-linux
+		rm -f ${OBJS}
 
 fclean	:	clean
-		rm -f ${NAME} ${NAMEBON}
+		rm -f ${NAME}
 
 re		:	fclean all
 
