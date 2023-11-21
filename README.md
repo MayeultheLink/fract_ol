@@ -63,6 +63,7 @@ I bet you're wondering about two things :
 Once we have answered both those questions, we will be ready to draw.
 
 First, we need to add a dimension to our function, so we can draw not just on a line, but on a plane. How do we do that ? Well, we can use what mathematicians call complex numbers. A complex number is this : a + ib, where a and b are two numbers, and i is a number where i² = -1. i is called an imaginary unit. That's because no matter the number you can think of that is on our line, if you multiply it by itself, it will give you a positive number. Not i. i times i will give you -1, which means that this number, i, does not exists on our line. One could say it exists on a different dimension.
+
 Let's go back to our function f(z) = z² + c. We are going to stick with it, but c, instead of a regular number, will be complex number, where in a + ib, a is the abscissa, and b the ordinate. We can rewrite our function like this : f(z) = z² + a + ib
 
 And now we can have a two dimension image ! When looking at your Mandelbrot set with coordinates, you can see that. For example, for a = 1 and b = 0.5, it is coloured, whereas for a = -0.5 and b = 0.1, it's black.
@@ -81,7 +82,9 @@ It's not that easy to say if it is staying stable or if it is going to blow up. 
 
 Let's take the iterations with a = 1 and b = 0. Turns out we already did this one, it's the one that goes 1, 2, 5, 26, ...?. For this one, it quickly appears that it's leaning towards infinity. Therefore, we paint this point with a bright colour. In fact, let's make this a rule : the quicker it appears to lean towards infinity, the brighter the color.
 
-And there we have it. A mesmerizing shape in which we can zoom in for eternity without ever reaching an end. That's because you can always get more precise with more iterations to see where it's going, but you can never get to the last iteration. Iterations are like peanuts : you can always have one more.
+And there we have it. A mesmerizing shape in which we can zoom in for eternity without ever reaching an end. 
+
+The infinitely zooming in effect is because you can always get more precise with more iterations to see where it's going, but you can never get to the last iteration. Iterations are like peanuts : you can always have one more.
 
 You can see this concept of number of iterations visually in this program by choosing the Serpienski's Carpet mode. When you launch it, you will get a blue square in a white square. If the white square has a side of 1, then the blue square has a side of 1/3, dividing the white square into nine new squares, themselves to be divided into 9 square by a blue square, and so on and so on. Try it by pressing 'T'. The more you iterate by pressing 'T', the more your fractal is precise.
 
