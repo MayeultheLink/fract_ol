@@ -31,18 +31,25 @@ Instead of taking as our function f(z) = z², we're going to use the one Benoit 
 
 Now we have two variables, z and c. We're going to establish, quite arbitrarily, that z will always be 0 for our first iteration, and c will be the number on our line. Let's try with c = 1.
 
-f(0) = 0² + 1 = 1 
-f(1) = 1² + 1 = 2 
-f(2) = 2² + 1 = 5 
-f(5) = 5² + 1 = 26 
+f(0) = 0² + 1 = 1
+
+f(1) = 1² + 1 = 2
+
+f(2) = 2² + 1 = 5
+
+f(5) = 5² + 1 = 26
+
 f(26) = 26² + 1 = ...?
 
 You get the rest. Where before, with 1, our iterations stayed stable, here, they lean towards infinity. Let's color our line white for 1.
 Same for -1 right ? Nope. Here it is for -1.
 
 f(0) = 0² - 1 = -1
+
 f(-1) = (-1)² - 1 = 0
+
 f(0) = 0² - 1 = -1
+
 f(-1) = (-1)² - 1 = 0
 
 Stable. It's not leaning towards anything, it's just going back and forth between two values. Paint it black.
